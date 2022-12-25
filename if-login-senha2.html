@@ -1,0 +1,33 @@
+<meta charset="UTF-8">
+
+<script>
+
+	var usuarioCadastrado = "user123";
+	var senhaCadastrada = "senha123";
+
+	var tentativaAtual = 1;
+	var maximoTentativas = 3;
+
+	while (tentativaAtual <= maximoTentativas) {
+
+		var usuarioInformado = prompt("Informe seu usuário");
+		var senhaInformada = prompt("Informe sua senha");
+		
+		if(usuarioInformado == usuarioCadastrado && senhaInformada == senhaCadastrada){
+			alert("Acesso ao sistema liberado");
+			tentativaAtual = maximoTentativas;
+		
+		} else {
+
+			if(tentativaAtual == 3){
+				alert("Máximo de tentativas utilizadas. Usuário está bloqueado!");
+
+			} else {
+				alert("Dados incorretos, tente novamente!");
+			}
+		}
+		tentativaAtual++
+	}
+
+	
+</script>

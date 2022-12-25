@@ -1,0 +1,29 @@
+<meta charset="UTF-8">
+
+<script>
+    
+    function pulaLinha(){
+        document.write("<br>");
+    }
+
+    function mostra(frase){
+        document.write(frase);
+        pulaLinha();
+    }
+
+    var numeroTabuada = 9;
+    var multiplicador = 1;
+
+    mostra("<strong>Tabuada do " + numeroTabuada + "</strong>");
+    pulaLinha();
+
+    while (multiplicador <= 10){
+        var tabuada = numeroTabuada * multiplicador;
+        mostra(numeroTabuada + " x " + multiplicador + " = " + tabuada);
+        multiplicador++
+    }
+
+    pulaLinha();
+    mostra("FIM");
+
+</script>
