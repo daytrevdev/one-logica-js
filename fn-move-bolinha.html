@@ -1,0 +1,44 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+	
+	var tela = document.querySelector('canvas');
+	var pincel = tela.getContext('2d');
+
+	pincel.fillStyle = 'lightgrey';
+	pincel.fillRect(0, 0, 600, 400);
+
+	function desenhaCirculo(x, y, raio) {
+
+		pincel.fillStyle = 'blue';
+		pincel.beginPath();
+		pincel.arc(x, y, raio, 0, 2 * Math.PI);
+		pincel.fill();
+	}
+
+	function limpaTela() {
+
+		pincel.clearRect(0, 0, 600, 400);
+		pincel.fillStyle = 'lightgrey';
+		pincel.fillRect(0, 0, 600, 400);
+	}
+
+	var x = 20;
+
+	function atualizaTela() {		
+
+		limpaTela();
+		desenhaCirculo(x, 20, 10);
+		x++;	
+	}
+	
+	/*
+	- atualizaTela não possui retorno, sendo assim, a variável retorno será undefined e esse será o valor passado para o setInterval
+	- logo, não faz sentido setInterval chamar a cada 10 milissegundos algo que é undefined
+	- passamos a função inteira como parâmetro para setInterval que internamente a chamará para nosso programa
+	- isso é chamado de callback
+	*/
+
+	setInterval(atualizaTela, 1); //recebe como parâmetro a função e o tempo em milissegundos
+
+</script>
