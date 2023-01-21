@@ -1,74 +1,42 @@
 <canvas width="600" height="400"></canvas>
 
 <script>
-	
-	var tela = document.querySelector('canvas');
-	var pincel = tela.getContext('2d');
 
-	pincel.fillStyle = 'lightgrey';
-	pincel.fillRect(0, 0, 600, 400);
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
 
-	var raio = 10;
-	var xRand = 10;
-	var yRand = 10;
+    pincel.fillStyle = 'lightgray';
+    pincel.fillRect(0, 0, 600, 400);
 
-	function desenhaCirculo(x, y, raio, cor) {
+    var raio = 10;
 
-		pincel.fillStyle = cor;
-		pincel.beginPath();
-		pincel.arc(x, y, raio, 0, 2 * 3.14);
-		pincel.fill();
-		
-		console.log(x + ', ' + y);
-	}
+    function desenhaCirculo(x, y, raio, cor) {
 
-	function desenhaAlvo(x, y, raio) { 
-
-        desenhaCirculo(x, y, raio + 20, 'red');
-		desenhaCirculo(x, y, raio + 10, 'white');
-		desenhaCirculo(x, y, raio, 'red');
-       
-	}
-	
-	function limpaTela() {
-
-        pincel.clearRect(0, 0, 600, 400);
-        pincel.fillStyle = 'lightgrey';
-		pincel.fillRect(0, 0, 600, 400);
+        pincel.fillStyle = cor;
+        pincel.beginPath();
+        pincel.arc(x, y, raio, 0, 2 * Math.PI);
+        pincel.fill();
     }
 
-    function sorteio(n) {
+    desenhaCirculo(300,200, raio + 20, 'red');
+    desenhaCirculo(300,200, raio + 10, 'white');
+    desenhaCirculo(300,200, raio, 'red');
 
-        return Math.floor(Math.random() * n);
+    function dispara(evento) {
+
+        var x = evento.pageX - tela.offsetLeft;
+        var y = evento.pageY - tela.offsetTop;
+
+
+        if (x > 300 - raio 
+            && x < 300 + raio
+                && y > 200 - raio 
+                    && y < 200 + raio) {
+
+            alert('Acertou');
+        }
     }
 
-    function moveAlvo() {
-
-	    xRand = sorteio(300)
-	    yRand = sorteio(200)
-	    limpaTela();
-	    desenhaAlvo(xRand, yRand, raio);
-    }
-
-	function dispara(evento) {
-		
-		var x = evento.pageX - tela.offsetLeft;
-		var y = evento.pageY - tela.offsetTop;
-
-		if( (x < xRand + raio) && 
-            (x > xRand - raio) &&
-          	(y < yRand + raio) && 
-          	(y > yRand - raio) ) {
-				
-			alert('ACERTOUUU!!!');
-		} 
-	}
-
-	//chamamos a função moveAlvo como parâmetro e não seu retorno
-	//a função setInterval recebe como parâmetro a função a ser chamada e o tempo em milissegundos
-
-	setInterval(moveAlvo, 600); 
-	
-	tela.onclick = dispara;
+    tela.onclick = dispara;
 
 </script>
